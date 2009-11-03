@@ -1,6 +1,6 @@
 def fuselage_dir
   if !ENV['FUSELAGE_DIR']
-    "#{root}/../fuselage"
+     File.expand_path("#{root}/../fuselage")
   else
     ENV['FUSELAGE_DIR']
   end
@@ -38,8 +38,8 @@ template do
   log_header "Get github user"
   github_user = get_github_user
 
-  templates = %w[basic 
-                  git
+  #note 'git' is not included in the template list as its explicitly called later, after unpacking/vendoring
+  templates = %w[basic
                   mysql
                   authlogic
                   paperclip
@@ -56,12 +56,8 @@ template do
                   watchr
                   thinking-sphinx
                   tarantula
-                  metric_fu 
-                  passenger
-                  asset_packager 
-                  capistrano 
                   exception_notification
-                  whenever ]
+]
 
   log_header "Install List"
   templates.each { |t| puts "  #{t}" }
@@ -81,6 +77,7 @@ template do
 
   log_header "Vendoring gems"
   rake "gems:unpack:dependencies"
+  rake "gems:unpack:dependencies RAILS_ENV=test"
 
   log_header "Git"
   load_sub_template 'git'
@@ -92,6 +89,7 @@ template do
     run "sudo rake gems:install"
     run "sudo rake gems:install RAILS_ENV=test"
   end
+
 end
 
 run_template unless ENV['TEST_MODE'] # hold off running the template whilst in unit testing mode

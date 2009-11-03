@@ -11,4 +11,6 @@ if sphinx_binary.blank?
   }
 end
 
-gem_with_version 'thinking-sphinx', :source => "http://gemcutter.org"
+gem_with_version 'thinking-sphinx', :source => "http://gemcutter.org", :lib => 'thinking_sphinx'
+
+rake "gems:install GEM=thinking-sphinx"

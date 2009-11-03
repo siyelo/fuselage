@@ -2,10 +2,10 @@
 
 Get your next Rails project off to a flying start with Fuselage: a set of popular gems/plugins/files & practices.
 
-Github: http://github.com/thoughtbot/factory_girl/tree/master
-Project Page: http://www.siyelo.com/projects/fuselage
-Issues: http://github.com/siyelo/fuselage/issues
-Blog: http://blog.siyelo.com
+* Github: http://github.com/thoughtbot/factory_girl/tree/master
+* Project Page: http://www.siyelo.com/projects/fuselage
+* Issues: http://github.com/siyelo/fuselage/issues
+* Blog: http://blog.siyelo.com
 
 == Usage: 
 
@@ -60,19 +60,19 @@ Optional Environment variables:
   Metrics
     metric_Fu
   Production
-    passenger
-    asset_packager
     capistrano
     exception_notification
-    whenever
 
 == Extra templates included
 
   compass with 960 grid system
   restful_authentication
   forgery
+  asset_packager
+  whenever
+  passenger
   
-These templates are included, but not installed by default. Manually edit template.rb to include them. 
+These templates are included, but not installed by default (nor tested). Manually edit template.rb to include them.
 
 == Requirements
 
@@ -85,6 +85,7 @@ These templates are included, but not installed by default. Manually edit templa
   git
   mysql
   sphinx
+  apache (if using passenger)
 
 == Author
 

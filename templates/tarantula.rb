@@ -1,4 +1,8 @@
-gem_with_version 'relevance-tarantula', :source => 'http://gems.github.com', :env => 'test'
+
+# Standard 'gem' command is not playing nice with gems.github.com - manual 'gem install' works OK though
+run 'gem install relevance-tarantula --source http://gems.github.com'
+
+gem_with_version 'relevance-tarantula', :source => 'http://gems.github.com', :env => 'test', :lib => 'relevance/tarantula'
 
 file 'test/tarantula/tarantula_test.rb' do
 <<-CODE

@@ -1,1 +1,1 @@
-gem_with_version 'exception_notification'
+plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git'
