@@ -1,3 +1,10 @@
+def fuselage_dir
+  if !ENV['FUSELAGE_DIR']
+    "#{root}/../fuselage"
+  else
+    ENV['FUSELAGE_DIR']
+  end
+end
 
 if !ENV['FUSELAGE_DIR']
   inside('../') do
@@ -9,14 +16,6 @@ if !ENV['FUSELAGE_DIR']
 end
 
 # Load the template helpers
-def fuselage_dir
-  if !ENV['FUSELAGE_DIR']
-    "#{root}/../fuselage"
-  else
-    ENV['FUSELAGE_DIR']
-  end
-end
-
 load_template "#{fuselage_dir}/helper.rb"
 
 template do
