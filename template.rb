@@ -1,19 +1,17 @@
 
-default_install_dir = "#{root}/../fuselage"
-
 if !ENV['FUSELAGE_DIR']
   inside('../') do
     log("Fetching Fuselage from github")
     run "git clone git://github.com/siyelo/fuselage.git"
     run "rm -rf fuselage/.git"
-    run "export FUSELAGE_DIR=#{default_install_dir}" #export it automatically
+    run "export FUSELAGE_DIR=#{fuselage_dir}" #export it automatically
   end
 end
 
 # Load the template helpers
 def fuselage_dir
   if !ENV['FUSELAGE_DIR']
-    "#{default_install_dir}"
+    "#{root}/../fuselage"
   else
     ENV['FUSELAGE_DIR']
   end
