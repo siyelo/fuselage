@@ -1,29 +1,20 @@
 ### Set up environment
 #
-TEMPLATE = ENV['TEMPLATE'] || 'vendor/fuselage'
 
-if !ENV['TEMPLATE']
-  inside('vendor') do
-    log("Fetching Fuselage from github")
-    run "git clone git://github.com/siyelo/fuselage.git"
-    run "rm -rf fuselage/.git"
-  end
-end
-
-def catalog_root
-  if !ENV['TEMPLATE']
-    "#{root}/vendor/fuselage"
-  else
-    ENV['TEMPLATE']
-  end
-end
+#def fuselage_dir
+#  if !ENV['FUSELAGE_DIR']
+#    "#{root}/../fuselage"
+#  else
+#    ENV['FUSELAGE_DIR']
+#  end
+#end
 
 def templates_dir
-  "#{catalog_root}/templates"
+  "#{fuselage_dir}/templates"
 end
 
 def assets_dir
-  "#{catalog_root}/assets"
+  "#{fuselage_dir}/assets"
 end
 
 ### Helpers

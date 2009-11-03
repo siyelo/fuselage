@@ -1,13 +1,25 @@
+
+default_install_dir = "#{root}/../fuselage"
+
+if !ENV['FUSELAGE_DIR']
+  inside('../') do
+    log("Fetching Fuselage from github")
+    run "git clone git://github.com/siyelo/fuselage.git"
+    run "rm -rf fuselage/.git"
+    run "export FUSELAGE_DIR=#{default_install_dir}" #export it automatically
+  end
+end
+
 # Load the template helpers
-def catalog_root
+def fuselage_dir
   if !ENV['FUSELAGE_DIR']
-    "#{root}/../"
+    "#{default_install_dir}"
   else
     ENV['FUSELAGE_DIR']
   end
 end
 
-load_template "#{catalog_root}/helper.rb"
+load_template "#{fuselage_dir}/helper.rb"
 
 template do
   log_header "Siyelo Fuselage - Rails Templates"

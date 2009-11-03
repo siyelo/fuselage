@@ -2,13 +2,10 @@
 
 Get your next Rails project off to a flying start with Fuselage: a set of popular gems/plugins/files & practices.
 
-www.siyelo.com/projects/fuselage
-
-== Dependencies
-
-  git
-  mysql
-  sphinx
+Github: http://github.com/thoughtbot/factory_girl/tree/master
+Project Page: http://www.siyelo.com/projects/fuselage
+Issues: http://github.com/siyelo/fuselage/issues
+Blog: http://blog.siyelo.com
 
 == Usage: 
 
@@ -83,9 +80,19 @@ These templates are included, but not installed by default. Manually edit templa
 * These templates are intended for Unix-like systems (tested on OSX)
 * You must be in the sudoers list to install gems (or set the SKIP_GEMS variable)
 
-== Credits
+=== Dependencies
 
-Inspired by Dr Nic's Mocra template : http://github.com/drnic/rails-templates and http://github.com/yizzreel/rails-templates/
+  git
+  mysql
+  sphinx
+
+== Author
+
+Written by Glenn Roberts
+
+Derived from software written by the following authors:
+* Dr Nic: Mocra template : http://github.com/drnic/rails-templates
+* Yizzreel: http://github.com/yizzreel/rails-templates/
 
 === License
 
