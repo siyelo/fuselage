@@ -6,12 +6,12 @@ def fuselage_dir
   end
 end
 
-if !ENV['FUSELAGE_DIR']
+if !File.exist?("#{fuselage_dir}/template.rb")
   inside('../') do
     log("Fetching Fuselage from github")
+    log("  Fuselage will be installed to #{fuselage_dir}")
     run "git clone git://github.com/siyelo/fuselage.git"
     run "rm -rf fuselage/.git"
-    run "export FUSELAGE_DIR=#{fuselage_dir}" #export it automatically
   end
 end
 
