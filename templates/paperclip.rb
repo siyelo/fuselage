@@ -1,0 +1,1 @@
+gem_with_version 'paperclip'

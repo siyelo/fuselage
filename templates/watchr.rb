@@ -1,0 +1,1 @@
+gem_with_version "watchr", :lib => false, :env => 'test', :source => 'http://gemcutter.org'

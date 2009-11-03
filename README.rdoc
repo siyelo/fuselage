@@ -1,0 +1,92 @@
+== Siyelo Fuselage - Rails Templates
+
+Get your next Rails project off to a flying start with Fuselage: a set of popular gems/plugins/files & practices.
+
+www.siyelo.com/projects/fuselage
+
+== Dependencies
+
+  git
+  mysql
+  sphinx
+
+== Usage: 
+
+  rails app_name -m http://github.com/siyelo/fuselage/raw/master/template.rb
+
+Fuselage will be cloned from GitHub and removed afterwards. Alternatively you can clone it and set $FUSELAGE_DIR
+
+  git clone  http://github.com/siyelo/fuselage.git
+  export FUSELAGE_DIR=your_clone_dir
+
+Optional Environment variables:
+ DOMAIN       - parent domain (default: siyelo.com)
+ ORGANIZATION - (default: 'Siyelo')
+ DESCRIPTION  - application description (default: "This is a cool app")
+ MYSQL_PASS   - your local MySQL root password 
+ SKIP_GEMS=1  - don't install gems as sudo (useful if you know they are already installed)
+ FUSELAGE_DIR - dir where Fuselage is already installed (e.g. if you cloned from github. )
+
+== Full feature list
+
+  Rails
+    basic template for a clean a rails install 
+  SCS
+    git
+  DB + Models
+    MySQL
+    authlogic
+    recaptcha
+    paperclip
+  Design/Layout
+    jQuery
+    haml
+    sass
+    compass + blueprint
+    formtastic
+    cufon
+    friendly_id
+  Controllers 
+    make_resourceful
+    will_paginate
+  Testing
+    machinist
+    faker
+    cucumber
+    rspec
+    webrat
+    watchr - alternative to autotest
+  Search
+    thinking-sphinx
+  Security
+    tarantula
+  Metrics
+    metric_Fu
+  Production
+    passenger
+    asset_packager
+    capistrano
+    exception_notification
+    whenever
+
+== Extra templates included
+
+  compass with 960 grid system
+  restful_authentication
+  forgery
+  
+These templates are included, but not installed by default. Manually edit template.rb to include them. 
+
+== Requirements
+
+* Rails >= 2.3.3
+* These templates are intended for Unix-like systems (tested on OSX)
+* You must be in the sudoers list to install gems (or set the SKIP_GEMS variable)
+
+== Credits
+
+Inspired by Dr Nic's Mocra template : http://github.com/drnic/rails-templates and http://github.com/yizzreel/rails-templates/
+
+=== License
+
+These templates are licensed under the terms of the MIT License, please see MIT-LICENSE file for details.
