@@ -60,7 +60,7 @@ def gem_with_version(name, options = {})
     $stderr.puts "  WARN: cannot find gem #{name} in repo - cannot load version. Adding it anyway."
   end
  
-  gem(name, options) unless ENV['SKIP_GEMS']
+  gem(name, options) unless ENV['SKIP_GEMS'].nil?
   
   # optionally install production gems on Heroku
   if ENV['_USE_HEROKU'] && !(test_env) && !(dev_env)
@@ -87,6 +87,16 @@ def log_header(header)
   print "\n  #{header}\n  "
   header.length.times {print "="}
   puts
+end
+
+def erb_to_haml
+  inside('app/views') do
+    Dir["#{root}/**/*.erb"].each do |file|
+      print "  haml-izing #{file}\n"
+      run "html2haml -rx #{file} #{file.gsub(/\.erb$/, '.haml')}"
+      run "rm #{file}"
+    end
+  end
 end
 
 def heroku(cmd, arguments="")

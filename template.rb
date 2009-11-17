@@ -29,7 +29,7 @@ template do
   ENV['_APP_URL']         = "#{ENV['_APP_SUBDOMAIN']}.#{ENV['_DOMAIN']}"
   ENV['_ORG']             = ENV['ORGANIZATION'] || "Siyelo"
   ENV['_DESCR']           = ENV['DESCRIPTION'] || 'This is a cool app'
-  skip_gems               = ENV['SKIP_GEMS']
+  skip_gems               = ENV['SKIP_GEMS'].nil?
 
   gem_source_warning
 
@@ -39,6 +39,9 @@ template do
 
   #note 'git' is not included in the template list as its explicitly called later, after unpacking/vendoring
   templates = %w[ basic
+                  app_layouts
+                  jquery
+                  google_analytics
                   capistrano
                   haml_sass_compass_blueprint
                   make_resourceful
@@ -91,6 +94,9 @@ template do
     rake "gems:unpack:dependencies RAILS_ENV=test"
   end
   
+  log_header "Convert all .erb to .haml"
+  erb_to_haml
+  
   log_header "Git"
   load_sub_template 'git'
   
@@ -106,10 +112,10 @@ template do
       # Success!
       log "SUCCESS! Your app is running at http://#{ENV['_APP_URL']}"
     end
-  end  
+  end
 
   unless skip_gems
-    log_header "Install gems locally"
+    log_header "Install gems locally (as sudo)"
     log("  set SKIP_GEMS if you do not want to install gems via sudo")
     # Make sure all these gems are actually installed locally
     run "sudo rake gems:install"
