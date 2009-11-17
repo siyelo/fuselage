@@ -5,6 +5,8 @@ generate "rspec"
 
 generate 'rspec_controller', 'home index'
 
+route "map.root :controller => 'home',:action => 'index'"
+
 # Textmate helper
 append_file 'spec/spec_helper.rb', <<-EOS
 
