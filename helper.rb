@@ -18,7 +18,7 @@ def assets_dir
 end
 
 ### Helpers
-#
+#   stolen from Dr Nic: Mocra template : http://github.com/drnic/rails-templates
 
 def template(&block)
   @store_template = block
@@ -47,14 +47,28 @@ def get_github_user
   end
 end
 
+
 def gem_with_version(name, options = {})
+
+  dev_env  = options[:env] == 'development' ? true : false #gem() seems to wipe this param out.
+  test_env = options[:env] == 'test' ? true : false #gem() seems to wipe this param out.
+  
   if gem_spec = Gem.source_index.find_name(name).last
     version = gem_spec.version.to_s
     options = {:version => ">= #{version}"}.merge(options)
-    gem(name, options)
   else
     $stderr.puts "  WARN: cannot find gem #{name} in repo - cannot load version. Adding it anyway."
-    gem(name, options)
+  end
+ 
+  gem(name, options) unless ENV['SKIP_GEMS']
+  
+  # optionally install production gems on Heroku
+  if ENV['_USE_HEROKU'] && !(test_env) && !(dev_env)
+    file ".gems", "" unless File.exists?(".gems")
+    version_str = options[:version] ? "--version '#{options[:version]}'" : ""
+    source_str  = options[:source]  ? "--source '#{options[:source]}'" : ""
+    puts "Appending gem #{name} to .gems"
+    append_file '.gems', "#{name} #{version_str} #{source_str}\n"
   end
   options
 end
@@ -73,4 +87,8 @@ def log_header(header)
   print "\n  #{header}\n  "
   header.length.times {print "="}
   puts
+end
+
+def heroku(cmd, arguments="")
+  run "heroku #{cmd} #{arguments}"
 end

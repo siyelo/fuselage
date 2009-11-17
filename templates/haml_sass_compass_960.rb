@@ -21,19 +21,19 @@ sass_dir = "app/stylesheets"
 log("Compass will store your compiled css files in 'public/stylesheets/compiled'")
 css_dir = "public/stylesheets/compiled"
 
-# define dependencies
-gem_with_version "haml", :lib => "haml", :version => ">=2.2.0"
-gem_with_version "chriseppstein-compass", :source => "http://gems.github.com/", :lib => "compass"
+unless ENV['SKIP_GEMS']
+  # define dependencies
+  gem_with_version "haml", :lib => "haml", :version => ">=2.2.0"
+  gem_with_version "chriseppstein-compass", :source => "http://gems.github.com/", :lib => "compass"
 
-# install and unpack
-rake "gems:install GEM=haml" #, :sudo => true
-log("Installing compass gem using sudo")
-rake "gems:install GEM=chriseppstein-compass", :sudo => true
-rake "gems:unpack GEM=chriseppstein-compass"
+  # install
+  log("Installing compass gem using sudo")
+  rake "gems:install GEM=chriseppstein-compass", :sudo => true
 
-gem_with_version "chriseppstein-compass-960-plugin", :source => "http://gems.github.com", :lib => "ninesixty"
-rake "gems:install GEM=chriseppstein-compass-960-plugin" #, :sudo => true
-rake "gems:unpack GEM=chriseppstein-compass-960-plugin"
+  gem_with_version "chriseppstein-compass-960-plugin", :source => "http://gems.github.com", :lib => "ninesixty"
+  rake "gems:install GEM=chriseppstein-compass-960-plugin" #, :sudo => true
+end
+
 css_framework = "960" # rename for command
 plugin_require = "-r ninesixty"
 

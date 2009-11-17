@@ -21,15 +21,17 @@ sass_dir = "app/stylesheets"
 log("Compass will store your compiled css files in 'public/stylesheets/compiled'")
 css_dir = "public/stylesheets/compiled"
 
-# define dependencies
-gem_with_version "haml", :lib => "haml", :version => ">=2.2.0"
-gem_with_version "chriseppstein-compass", :source => "http://gems.github.com/", :lib => "compass"
+unless ENV['SKIP_GEMS']
+  # define dependencies
+  gem_with_version "haml", :lib => "haml", :version => ">=2.2.0"
+  gem_with_version "chriseppstein-compass", :source => "http://gems.github.com/", :lib => "compass"
 
-# install and unpack
-rake "gems:install GEM=haml" #, :sudo => true
-log("Installing compass gem using sudo")
-rake("gems:install GEM=chriseppstein-compass", :sudo => true)
-rake "gems:unpack GEM=chriseppstein-compass"
+  # install
+  rake "gems:install GEM=haml" #, :sudo => true
+  log("Installing compass gem using sudo")
+  rake("gems:install GEM=chriseppstein-compass", :sudo => true)
+
+end
 
 # build out compass command
 compass_command = "compass --rails -f #{css_framework} . --css-dir=#{css_dir} --sass-dir=#{sass_dir} "

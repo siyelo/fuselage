@@ -29,7 +29,6 @@ template do
   ENV['_APP_URL']         = "#{ENV['_APP_SUBDOMAIN']}.#{ENV['_DOMAIN']}"
   ENV['_ORG']             = ENV['ORGANIZATION'] || "Siyelo"
   ENV['_DESCR']           = ENV['DESCRIPTION'] || 'This is a cool app'
-  ENV['_MYSQL_PASS']      = ENV['MYSQL_PASS'] || ask("MySQL root user password? :")
   skip_gems               = ENV['SKIP_GEMS']
 
   gem_source_warning
@@ -39,28 +38,39 @@ template do
   github_user = get_github_user
 
   #note 'git' is not included in the template list as its explicitly called later, after unpacking/vendoring
-  templates = %w[basic
-                  mysql
-                  authlogic
-                  paperclip
-                  recaptcha
+  templates = %w[ basic
                   capistrano
                   haml_sass_compass_blueprint
-                  formtastic 
-                  cufon
-                  friendly_id 
-                  make_resourceful 
+                  make_resourceful
                   will_paginate
-                  cucumber_rspec_rpec-rails_webrat 
-                  machinist_forgery 
+                  cucumber_rspec_rpec-rails_webrat
                   watchr
-                  thinking-sphinx
-                  tarantula
                   exception_notification
+                  heroku
 ]
 
   log_header "Install List"
   templates.each { |t| puts "  #{t}" }
+  
+  use_heroku = templates.include?('heroku')
+  use_slicehost = templates.include?('slicehost')
+  #TODO: create slicehost template
+  
+  if use_heroku && use_slicehost
+    puts <<-EOS.gsub(/^ /, '')
+  
+    You may only specifiy one deploy type i.e. Heroku *or* Slicehost
+    EOS
+    exit
+  end  
+
+  ### cache variables that that are used in templates
+  #
+  if templates.include?('mysql')
+    ENV['_MYSQL_PASS']      ||= ENV['MYSQL_PASS'] || ask("MySQL root user password? :")
+  end
+  ENV['_USE_HEROKU']    = '1' if use_heroku
+  ENV['_USE_SLICEHOST'] = '1' if use_slicehost
 
   templates.each do |t|
     log_header "#{t.capitalize}"
@@ -72,15 +82,31 @@ template do
     run "rake db:migrate RAILS_ENV=#{env}"
   end
 
-  log_header "A freeze is coming!"
-  rake 'rails:freeze:gems'
+  if !use_heroku
+    log_header "A freeze is coming!"
+    rake 'rails:freeze:gems'
 
-  log_header "Vendoring gems"
-  rake "gems:unpack:dependencies"
-  rake "gems:unpack:dependencies RAILS_ENV=test"
-
+    log_header "Vendoring gems"
+    rake "gems:unpack:dependencies"
+    rake "gems:unpack:dependencies RAILS_ENV=test"
+  end
+  
   log_header "Git"
   load_sub_template 'git'
+  
+  # Deploy!
+  if use_heroku
+    log_header "Heroku"
+    if ask("Deploy to Heroku now?  ")
+      heroku :create, ENV['_APP_SUBDOMAIN']
+      git :push => "heroku master"
+      heroku :rake, "db:migrate"
+      heroku :open
+
+      # Success!
+      log "SUCCESS! Your app is running at http://#{ENV['_APP_URL']}"
+    end
+  end  
 
   unless skip_gems
     log_header "Install gems locally"
