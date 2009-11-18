@@ -9,6 +9,15 @@
 # and can only be used with Rails 2.3+.
 # -----------------------------------------------------------------
 
+
+# Note it requires the following in your app layout - done automatically if you use app_layouts.rb
+#  = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+#  = stylesheet_link_tag 'compiled/print.css', :media => 'print'
+#  /[if IE]
+#    = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+
+
+
 # css framework prompt
 log("You have chosen 'blueprint' as a CSS framework")
 css_framework = "blueprint"

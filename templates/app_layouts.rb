@@ -33,7 +33,6 @@ file 'app/views/layouts/application.html.haml', <<-EOS
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     
-    
   %body
     #content
       - render :partial => 'layouts/flashes'
