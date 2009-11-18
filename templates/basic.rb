@@ -19,12 +19,15 @@ gsub_file('/config/environment.rb', /# Be sure to restart your server when you m
   <<-EOS.gsub(/^  /, '')
   # Be sure to restart your server when you modify this file
   
-  # Change this to the name of your rails project, like carbonrally.  
-  # Just use the same name as the svn repo.
-  PROJECT_NAME        = "#{ENV['_APP_DB']}"
-  PROJECT_DESCRIPTION = "#{ENV['_DESCR']}"
+  APP_NAME         = "#{ENV['_APP']}"
+  APP_SUBDOMAIN    = "#{ENV['_APP_SUBDOMAIN']}"
+  APP_DOMAIN       = "#{ENV['_APP_DOMAIN']}"
+  APP_DATABASE     = "#{ENV['_APP_DB']}"
+  APP_DESCRIPTION  = "#{ENV['_APP_DESCR']}"
+  APP_URL          = "#{ENV['_APP_URL']}"
+  APP_ORGANIZATION = "#{ENV['_APP_ORG']}"
 
-  throw "The project's name in environment.rb is blank" if PROJECT_NAME.empty?
-  throw "Project name (\#{PROJECT_NAME}) must_be_like_this" unless PROJECT_NAME =~ /^[a-z_]*$/
+  throw "The project's name in environment.rb is blank" if APP_NAME.empty?
+  throw "Project db name (\#{APP_DATABASE}) must_be_like_this" unless APP_DATABASE =~ /^[a-z_]*$/
 EOS
 end

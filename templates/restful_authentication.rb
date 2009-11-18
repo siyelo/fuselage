@@ -1,3 +1,7 @@
+#Restful Auth
+
+#Note: this template should be used in conjunction with the action_mailer template.
+
 plugin 'restful_authentication', :git => 'git://github.com/technoweenie/restful-authentication.git', :submodule => true
 
 # Set up session store initializer
@@ -13,19 +17,6 @@ rake 'db:sessions:create'
 generate 'authenticated', 'user session --include-activation --rspec'
 
 environment("config.active_record.observers = :user_observer")
-
-initializer("mailer.rb", <<-EOS.gsub(/^    /, ''))
-mailer_options = YAML.load_file("\#{RAILS_ROOT}/config/mailer.yml")
-ActionMailer::Base.smtp_settings = mailer_options
-EOS
-
-file("config/mailer.yml", <<-EOS.gsub(/^    /, ''))
-:address: mail.authsmtp.com
-:domain: #{domain}
-:authentication: :login
-:user_name: USERNAME
-:password: PASSWORD
-EOS
 
 append_file("app/views/users/new.html.erb", <<-EOS.gsub(/^    /, ''))
 <h2>FIRST - setup activation config/mailer.yml for your mail server</h2>

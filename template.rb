@@ -25,10 +25,11 @@ template do
   ENV['_APP']             = app_name.gsub(/[_-]/, ' ').titleize
   ENV['_APP_SUBDOMAIN']   = app_name.gsub(/[_\s]/, '-').downcase
   ENV['_APP_DB']          = app_name.gsub(/[-\s]/, '_').downcase
-  ENV['_DOMAIN']          = ENV['DOMAIN'] || 'siyelo.com'
-  ENV['_APP_URL']         = "#{ENV['_APP_SUBDOMAIN']}.#{ENV['_DOMAIN']}"
-  ENV['_ORG']             = ENV['ORGANIZATION'] || "Siyelo"
-  ENV['_DESCR']           = ENV['DESCRIPTION'] || 'This is a cool app'
+  ENV['_APP_DOMAIN']      = ENV['DOMAIN'] || 'siyelo.com'
+  ENV['_APP_URL']         = "#{ENV['_APP_SUBDOMAIN']}.#{ENV['_APP_DOMAIN']}"
+  ENV['_APP_ORG']         = ENV['ORGANIZATION'] || "Siyelo"
+  ENV['_APP_DESCR']       = ENV['DESCRIPTION'] || 'This is a cool app'
+  ENV['_APP_EMAILS']      = ENV['EMAIL_LIST'] || "support@#{ENV['_APP_DOMAIN']}"
   skip_gems               = ENV['SKIP_GEMS'].nil?
 
   gem_source_warning
@@ -49,6 +50,7 @@ template do
                   cucumber_rspec_rpec-rails_webrat
                   watchr
                   exception_notification
+                  action_mailer
                   heroku
 ]
 
@@ -103,7 +105,7 @@ template do
   # Deploy!
   if use_heroku
     log_header "Heroku"
-    if ask("Deploy to Heroku now?  ")
+    if yes?("Deploy to Heroku now?")
       heroku :create, ENV['_APP_SUBDOMAIN']
       git :push => "heroku master"
       heroku :rake, "db:migrate"

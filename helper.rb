@@ -60,7 +60,7 @@ def gem_with_version(name, options = {})
     $stderr.puts "  WARN: cannot find gem #{name} in repo - cannot load version. Adding it anyway."
   end
  
-  gem(name, options) unless ENV['SKIP_GEMS'].nil?
+  gem(name, options)
   
   # optionally install production gems on Heroku
   if ENV['_USE_HEROKU'] && !(test_env) && !(dev_env)

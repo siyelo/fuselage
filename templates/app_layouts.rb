@@ -25,8 +25,8 @@ file 'app/views/layouts/application.html.haml', <<-EOS
 %html
   %head
     - title = yield(:title)
-    - title = "PROJECT_NAME | " + title if title
-    %title= title || \'PROJECT_DESCRIPTION\'
+    - title = "APP_NAME | " + title if title
+    %title= title || \'APP_DESCRIPTION\'
 
     = stylesheet_link_tag 'compiled/reset', 'compiled/basic', 'compiled/grid', 'compiled/layout', 'compiled/styles', :cache => 'all', :media => 'screen, projection'
     = stylesheet_link_tag 'compiled/print', :cache => true, :media => 'print'
