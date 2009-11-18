@@ -27,12 +27,12 @@ file 'app/views/layouts/application.html.haml', <<-EOS
     - title = yield(:title)
     - title = "APP_NAME | " + title if title
     %title= title || \'APP_DESCRIPTION\'
-
-    = stylesheet_link_tag 'compiled/reset', 'compiled/basic', 'compiled/grid', 'compiled/layout', 'compiled/styles', :cache => 'all', :media => 'screen, projection'
-    = stylesheet_link_tag 'compiled/print', :cache => true, :media => 'print'
-    <!--[if IE]>
-    = stylesheet_link_tag 'compiled/ie', :cache => true, :media => 'screen, projection'
-    <![endif]-->
+    
+    = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'compiled/print.css', :media => 'print'
+    /[if IE]
+      = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+    
     
   %body
     #content
