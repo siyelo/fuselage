@@ -2,9 +2,10 @@
 
 Get your next Rails project off to a flying start with Fuselage: a set of popular gems/plugins/files & practices.
 
-* Github: http://github.com/thoughtbot/factory_girl/tree/master
-* Project Page: http://www.siyelo.com/projects/fuselage
+* Github: http://github.com/siyelo/fuselage
+* Project Page: http://www.siyelo.com/community/
 * Issues: http://github.com/siyelo/fuselage/issues
+* Feedback: http://getsatisfaction.com/siyelo/products/siyelo_fuselage
 * Blog: http://blog.siyelo.com
 
 == Usage: 

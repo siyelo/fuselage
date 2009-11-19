@@ -19,6 +19,7 @@ file 'app/views/layouts/_flashes.html.haml',
       = h value
 }
 
+# A haml + blueprint compatible layout
 file 'app/views/layouts/application.html.haml', <<-EOS
 !!! XML
 !!! Strict
@@ -33,9 +34,17 @@ file 'app/views/layouts/application.html.haml', <<-EOS
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     
-  %body
-    #content
-      - render :partial => 'layouts/flashes'
-      = yield :layout
+   %body.three-col
+    .container
+      #header
+        %h2 Header
+      #content
+        %h2 Content
+        - render :partial => 'layouts/flashes'
+        = yield :layout
+      #sidebar
+        %h2 Sidebar
+      #footer
+        %h2 Footer
   
 EOS

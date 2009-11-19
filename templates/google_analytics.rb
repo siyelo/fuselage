@@ -1,5 +1,10 @@
 
-tracker_id = "TODO: Enter tracker id" || ask('Please enter your google analytics tracker id, or hit enter to do it later: ')
+tracker_id = ask('Please enter your google analytics tracker id (or hit enter to do it 
+later): ')
+
+tracker_entered?  = tracker_id.nil?
+
+tracker_id = "TODO:TRACKER_ID" if !tracker_entered?
 
 file 'app/views/shared/_google_analytics.html',<<-EOS
 <script type="text/javascript">
@@ -23,3 +28,10 @@ append_file 'app/views/layouts/application.html.haml',
     #google_analytics_urchin
       = render :partial => "/shared/google_analytics"
 }
+
+if !tracker_entered?
+  append_file("app/views/layouts/application.html.haml",
+%q{
+    %h2 Reminder - change the google analytics urchin code in app/views//shared/google_analytics.rb
+}
+end
