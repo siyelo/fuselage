@@ -44,7 +44,7 @@ template do
                   jquery
                   google_analytics
                   capistrano
-                  haml_sass_compass_blueprint
+                  haml_sass_compass_960
                   make_resourceful
                   will_paginate
                   cucumber_rspec_rpec-rails_webrat
