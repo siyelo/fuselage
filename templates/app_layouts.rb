@@ -4,6 +4,9 @@ file 'app/helpers/application_helper.rb',
     "#{controller.controller_name} #{controller.controller_name}-#{controller.action_name}"
   end
   
+  # Usage: simply invoke title() at the top of each view
+  # E.g. 
+  # - title "Home"
   def title(page_title)
     content_for(:title) { page_title }
   end
@@ -26,8 +29,8 @@ file 'app/views/layouts/application.html.haml', <<-EOS
 %html
   %head
     - title = yield(:title)
-    - title = "APP_NAME | " + title if title
-    %title= title || \'APP_DESCRIPTION\'
+    - title = APP_NAME + " | " + title if title
+    %title= title || APP_DESCRIPTION
     
     = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
