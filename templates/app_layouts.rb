@@ -37,7 +37,7 @@ file 'app/views/layouts/application.html.haml', <<-EOS
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     
-   %body.three-col
+  %body.three-col
     .container
       #header
         %h2 Header
