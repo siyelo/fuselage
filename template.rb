@@ -76,6 +76,8 @@ template do
   end
   ENV['_USE_HEROKU']    = '1' if use_heroku
   ENV['_USE_SLICEHOST'] = '1' if use_slicehost
+  
+  ENV['_USE_COMPASS'] = '1' if ( templates.include?('haml_sass_compass_960') || templates.include?('haml_sass_compass_blueprint'))
 
   templates.each do |t|
     log_header "#{t.capitalize}"
