@@ -43,7 +43,7 @@ file 'app/views/layouts/application.html.haml', <<-EOS
         %h2 Header
       #content
         %h2 Content
-        - render :partial => 'layouts/flashes'
+        = render :partial => 'layouts/flashes'
         = yield :layout
       #sidebar
         %h2 Sidebar
