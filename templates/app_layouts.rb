@@ -18,7 +18,7 @@ end
 file 'app/views/layouts/_flashes.html.haml', 
 %q{#flash
   - flash.each do |key, value|
-    #flash{:id => key}
+    #flash{:id => key.to_s}
       = h value
 }
 
