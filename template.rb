@@ -6,13 +6,15 @@ def fuselage_dir
   end
 end
 
+ENV['_GITHUB_FETCHED'] = false
+
 if !File.exist?("#{fuselage_dir}/template.rb")
   inside('../') do
     log("Fetching Fuselage from github")
     log("  Fuselage will be installed to #{fuselage_dir}")
     run "git clone git://github.com/siyelo/fuselage.git"
     run "rm -rf fuselage/.git"
-    fetched_from_github = true
+    ENV['_GITHUB_FETCHED'] = true
   end
 end
 
@@ -130,7 +132,7 @@ template do
   end
 
   #cleanup
-  if fetched_from_github
+  if ENV['_GITHUB_FETCHED']
     inside('../') do
       log("Cleaning up Fuselage")
       run "rm -rf #{fuselage_dir}"
