@@ -6,15 +6,13 @@ def fuselage_dir
   end
 end
 
-ENV['_GITHUB_FETCHED'] = false
-
 if !File.exist?("#{fuselage_dir}/template.rb")
   inside('../') do
     log("Fetching Fuselage from github")
     log("  Fuselage will be installed to #{fuselage_dir}")
     run "git clone git://github.com/siyelo/fuselage.git"
     run "rm -rf fuselage/.git"
-    ENV['_GITHUB_FETCHED'] = true
+    ENV['_GITHUB_FETCHED'] = '1'
   end
 end
 
