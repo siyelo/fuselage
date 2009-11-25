@@ -95,6 +95,12 @@ template do
   log_header "Convert all .erb to .haml"
   erb_to_haml  #warning - dont do this after vendoring ! :-)
   
+  # generate compiled stylesheeets
+  if ENV['_USE_COMPASS']
+    log_header "Compass generate css "
+    run "compass" 
+  end
+  
   #Freeze & Vendor
   if !use_heroku
     log_header "A freeze is coming!"
