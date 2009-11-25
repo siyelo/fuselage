@@ -134,6 +134,7 @@ template do
     inside('../') do
       log("Cleaning up Fuselage")
       run "rm -rf #{fuselage_dir}"
+    end
   end
 end
 
