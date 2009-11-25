@@ -12,6 +12,7 @@ if !File.exist?("#{fuselage_dir}/template.rb")
     log("  Fuselage will be installed to #{fuselage_dir}")
     run "git clone git://github.com/siyelo/fuselage.git"
     run "rm -rf fuselage/.git"
+    fetched_from_github = true
   end
 end
 
@@ -30,7 +31,7 @@ template do
   ENV['_APP_ORG']         = ENV['ORGANIZATION'] || "Siyelo"
   ENV['_APP_DESCR']       = ENV['DESCRIPTION'] || 'This is a cool app'
   ENV['_APP_EMAILS']      = ENV['EMAIL_LIST'] || "support@#{ENV['_APP_DOMAIN']}"
-  skip_gems               = ENV['SKIP_GEMS'].nil?
+  skip_gems               = ENV['SKIP_GEMS']
 
   gem_source_warning
 
@@ -42,9 +43,11 @@ template do
   templates = %w[ basic
                   app_layouts
                   jquery
+                  authlogic
+                  formtastic
                   google_analytics
                   capistrano
-                  haml_sass_compass_960
+                  haml_sass_compass_blueprint
                   make_resourceful
                   will_paginate
                   cucumber_rspec_rpec-rails_webrat
@@ -88,7 +91,11 @@ template do
   %w[development test].each do |env|
     run "rake db:migrate RAILS_ENV=#{env}"
   end
-
+  
+  log_header "Convert all .erb to .haml"
+  erb_to_haml  #warning - dont do this after vendoring ! :-)
+  
+  #Freeze & Vendor
   if !use_heroku
     log_header "A freeze is coming!"
     rake 'rails:freeze:gems'
@@ -97,10 +104,7 @@ template do
     rake "gems:unpack:dependencies"
     rake "gems:unpack:dependencies RAILS_ENV=test"
   end
-  
-  log_header "Convert all .erb to .haml"
-  erb_to_haml
-  
+
   log_header "Git"
   load_sub_template 'git'
   
@@ -113,19 +117,24 @@ template do
       heroku :rake, "db:migrate"
       heroku :open
 
-      # Success!
       log "SUCCESS! Your app is running at http://#{ENV['_APP_URL']}"
     end
   end
 
-  unless skip_gems
+  # Make sure all these gems are actually installed locally
+  if skip_gems.nil?
     log_header "Install gems locally (as sudo)"
     log("  set SKIP_GEMS if you do not want to install gems via sudo")
-    # Make sure all these gems are actually installed locally
     run "sudo rake gems:install"
     run "sudo rake gems:install RAILS_ENV=test"
   end
 
+  #cleanup
+  if fetched_from_github
+    inside('../') do
+      log("Cleaning up Fuselage")
+      run "rm -rf #{fuselage_dir}"
+  end
 end
 
 run_template unless ENV['TEST_MODE'] # hold off running the template whilst in unit testing mode
