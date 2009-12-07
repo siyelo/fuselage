@@ -28,9 +28,8 @@ file 'app/views/layouts/application.html.haml', <<-EOS
 !!! Strict
 %html
   %head
-    - title = yield(:title)
-    - title = APP_NAME + " | " + title if title
-    %title= title || APP_DESCRIPTION
+    - page_title = yield(:title) || APP_DESCRIPTION
+    %title= APP_NAME + " | " + page_title
     
     = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
@@ -38,7 +37,7 @@ file 'app/views/layouts/application.html.haml', <<-EOS
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     
   %body.three-col
-    .container
+    #container
       #header
         %h2 Header
       #content
