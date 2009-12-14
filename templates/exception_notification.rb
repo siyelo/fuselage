@@ -23,6 +23,10 @@ file '/config/exception.yml', <<-EOS.gsub(/^  /, '')
     recipients: #{recipients}
     sender: "Application Error <test.app.error@#{domain}>"
     prefix: "[#{app_name} Test] "
+  cucumber:
+    recipients: #{recipients}
+    sender: "Application Error <test.app.error@#{domain}>"
+    prefix: "[#{app_name} Test] "
   staging:
     recipients: #{recipients}
     sender: "Application Error <staging.app.error@#{domain}>"
