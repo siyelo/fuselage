@@ -7,8 +7,8 @@ gsub_file("app/controllers/application_controller.rb", /class ApplicationControl
   "class ApplicationController < ActionController::Base\n  include ExceptionNotifiable"
 end
 
-app_name = ENV['_APP']
-domain = ENV['_APP_DOMAIN']
+app_name   = ENV['_APP']
+domain     = ENV['_APP_DOMAIN']
 recipients = ENV['_APP_EMAILS']
 if recipients.nil?
   recipients = ask(" Enter your exception notification recpients (space separated list) : ")

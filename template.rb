@@ -27,7 +27,7 @@ template do
   ENV['_APP_SUBDOMAIN']   = app_name.gsub(/[_\s]/, '-').downcase
   ENV['_APP_DB']          = app_name.gsub(/[-\s]/, '_').downcase
   ENV['_APP_DOMAIN']      = ENV['DOMAIN'] || 'siyelo.com'
-  ENV['_APP_URL']         = "#{ENV['_APP_SUBDOMAIN']}.#{ENV['_APP_DOMAIN']}"
+  ENV['_APP_URL']         = "http://#{ENV['_APP_SUBDOMAIN']}.#{ENV['_APP_DOMAIN']}"
   ENV['_APP_ORG']         = ENV['ORGANIZATION'] || "Siyelo"
   ENV['_APP_DESCR']       = ENV['DESCRIPTION'] || 'This is a cool app'
   ENV['_APP_EMAILS']      = ENV['EMAIL_LIST'] || "support@#{ENV['_APP_DOMAIN']}"
