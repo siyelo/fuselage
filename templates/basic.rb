@@ -21,7 +21,7 @@ gsub_file('/config/environment.rb', /# Be sure to restart your server when you m
   
   APP_NAME         = "#{ENV['_APP']}"
   APP_SUBDOMAIN    = "#{ENV['_APP_SUBDOMAIN']}"
-  APP_DOMAIN       = "#{ENV['_APP_DOMAIN']}"
+  APP_DOMAIN       = APP_SUBDOMAIN + ".#{ENV['_APP_DOMAIN']}"
   APP_DATABASE     = "#{ENV['_APP_DB']}"
   APP_DESCRIPTION  = "#{ENV['_APP_DESCR']}"
   APP_URL          = "#{ENV['_APP_URL']}"
