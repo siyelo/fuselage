@@ -40,7 +40,7 @@ template do
   github_user = get_github_user
 
   #note files prefixed with underscore '_' are excluded. these should be loaded manually
-  templates = Dir.glob(File.join("templates/", "*.rb")).reject { |f| File.basename(f).match(/^_/)  }  
+  templates = Dir.glob(File.join(templates_dir, "*.rb")).reject { |f| File.basename(f).match(/^_/)  }  
   
   ### cache variables that that are used in templates
   #
@@ -52,9 +52,9 @@ template do
   load_sub_template '_basic'
     
   templates.each do |t|
-    if yes?("Do you want to install #{File.basename(t) ?: }")
-      log_header "#{t.capitalize}"
-      load_sub_template t
+    log_header "#{File.basename(t)}"
+    if yes?("Do you want to install #{File.basename(t)} ?")
+      load_template t
     end
   end
   
@@ -75,10 +75,9 @@ template do
   end
   
   #Freeze & Vendor
+  log_header "A freeze is coming!"
   if yes?("Do you want to freeze & vendor the gems?")
-    log_header "A freeze is coming!"
     rake 'rails:freeze:gems'
-
     log_header "Vendoring gems"
     rake "gems:unpack:dependencies"
     rake "gems:unpack:dependencies RAILS_ENV=test"
@@ -98,12 +97,15 @@ template do
       log "SUCCESS! Your app is running at http://#{ENV['_APP_URL']}"
   end
 
+
   # Make sure all these gems are actually installed locally
   if skip_gems.nil?
+    log_header "Install Gems"
     log("Note: set SKIP_GEMS if you want to skip this step")
     if yes?("Install gems locally (as sudo)?")
-    run "sudo rake gems:install"
-    run "sudo rake gems:install RAILS_ENV=test"
+      run "sudo rake gems:install"
+      run "sudo rake gems:install RAILS_ENV=test"
+    end
   end
 
 

@@ -28,7 +28,7 @@ def run_template
   @store_template.call
 end
 
-def load_sub_template(t) 
+def load_sub_template(t)
   load_template "#{templates_dir}/#{t}.rb"
 end
 
