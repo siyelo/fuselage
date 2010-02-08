@@ -43,17 +43,9 @@ template do
   templates = %w[ basic
                   app_layouts
                   jquery
-                  authlogic
-                  formtastic
                   google_analytics
-                  capistrano
                   haml_sass_compass_blueprint
-                  make_resourceful
-                  will_paginate
                   cucumber_rspec_rpec-rails_webrat
-                  watchr
-                  exception_notification
-                  action_mailer
                   heroku
 ]
 

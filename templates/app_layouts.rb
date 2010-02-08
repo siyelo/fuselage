@@ -36,7 +36,7 @@ file 'app/views/layouts/application.html.haml', <<-EOS
     /[if IE]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     
-  %body.three-col
+  %body.three-col.bp
     #container
       #header
         %h2 Header
@@ -50,3 +50,24 @@ file 'app/views/layouts/application.html.haml', <<-EOS
         %h2 Footer
   
 EOS
+
+generate "controller home index"
+
+route "map.home ':page', :controller => 'home', :action => 'show', :page => Regexp.new(HomeController::PAGES.join('|'))"
+route "map.root :controller => 'home'"
+
+file 'app/controllers/home_controller.rb', <<-EOS
+class HomeController < ApplicationController
+  PAGES = %w[about contact] #allowable (non-index) pages rendered by show action
+  
+  def index
+  end
+
+  def show
+    render :action => params[:page]
+  end
+  
+end
+EOS
+
+

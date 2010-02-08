@@ -25,7 +25,7 @@ EOS
 #    <here>
 append_file 'app/views/layouts/application.html.haml',
 %q{
-   = render :partial => "/shared/google_analytics"
+    = render :partial => "/shared/google_analytics"
 }
 
 if !tracker_entered
