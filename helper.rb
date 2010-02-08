@@ -61,15 +61,7 @@ def gem_with_version(name, options = {})
   end
  
   gem(name, options)
-  
-  # optionally install production gems on Heroku
-  if ENV['_USE_HEROKU'] && !(test_env) && !(dev_env)
-    file ".gems", "" unless File.exists?(".gems")
-    version_str = options[:version] ? "--version '#{options[:version]}'" : ""
-    source_str  = options[:source]  ? "--source '#{options[:source]}'" : ""
-    puts "Appending gem #{name} to .gems"
-    append_file '.gems', "#{name} #{version_str} #{source_str}\n"
-  end
+
   options
 end
 

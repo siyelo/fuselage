@@ -39,45 +39,26 @@ template do
   log_header "Get github user"
   github_user = get_github_user
 
-  #note 'git' is not included in the template list as its explicitly called later, after unpacking/vendoring
-  templates = %w[ basic
-                  app_layouts
-                  jquery
-                  google_analytics
-                  haml_sass_compass_blueprint
-                  cucumber_rspec_rpec-rails_webrat
-                  heroku
-]
-
-  log_header "Install List"
-  templates.each { |t| puts "  #{t}" }
+  #note files prefixed with underscore '_' are excluded. these should be loaded manually
+  templates = Dir.glob(File.join("templates/", "*.rb")).reject { |f| File.basename(f).match(/^_/)  }  
   
-  use_heroku = templates.include?('heroku')
-  use_slicehost = templates.include?('slicehost')
-  #TODO: create slicehost template
-  
-  if use_heroku && use_slicehost
-    puts <<-EOS.gsub(/^ /, '')
-  
-    You may only specifiy one deploy type i.e. Heroku *or* Slicehost
-    EOS
-    exit
-  end  
-
   ### cache variables that that are used in templates
   #
   if templates.include?('mysql')
     ENV['_MYSQL_PASS']      ||= ENV['MYSQL_PASS'] || ask("MySQL root user password? :")
   end
-  ENV['_USE_HEROKU']    = '1' if use_heroku
-  ENV['_USE_SLICEHOST'] = '1' if use_slicehost
   
-  ENV['_USE_COMPASS'] = '1' if ( templates.include?('haml_sass_compass_960') || templates.include?('haml_sass_compass_blueprint'))
-
+  log_header "Basic preparation"
+  load_sub_template '_basic'
+    
   templates.each do |t|
-    log_header "#{t.capitalize}"
-    load_sub_template t  
+    if yes?("Do you want to install #{File.basename(t) ?: }")
+      log_header "#{t.capitalize}"
+      load_sub_template t
+    end
   end
+  
+  log_header "Finishing up..."
 
   log_header "DB Migrate"
   %w[development test].each do |env|
@@ -94,7 +75,7 @@ template do
   end
   
   #Freeze & Vendor
-  if !use_heroku
+  if yes?("Do you want to freeze & vendor the gems?")
     log_header "A freeze is coming!"
     rake 'rails:freeze:gems'
 
@@ -104,28 +85,27 @@ template do
   end
 
   log_header "Git"
-  load_sub_template 'git'
+  load_sub_template '_git'
   
   # Deploy!
-  if use_heroku
-    log_header "Heroku"
-    if yes?("Deploy to Heroku now?")
+  log_header "Heroku"
+  if yes?("Deploy to Heroku now?")
       heroku :create, ENV['_APP_SUBDOMAIN']
       git :push => "heroku master"
       heroku :rake, "db:migrate"
       heroku :open
 
       log "SUCCESS! Your app is running at http://#{ENV['_APP_URL']}"
-    end
   end
 
   # Make sure all these gems are actually installed locally
   if skip_gems.nil?
-    log_header "Install gems locally (as sudo)"
-    log("  set SKIP_GEMS if you do not want to install gems via sudo")
+    log("Note: set SKIP_GEMS if you want to skip this step")
+    if yes?("Install gems locally (as sudo)?")
     run "sudo rake gems:install"
     run "sudo rake gems:install RAILS_ENV=test"
   end
+
 
   #cleanup
   if ENV['_GITHUB_FETCHED']

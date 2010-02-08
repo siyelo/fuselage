@@ -16,7 +16,7 @@
 #  /[if IE]
 #    = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
 
-
+ENV['_USE_COMPASS'] = '1'
 
 # css framework prompt
 log("You have chosen '960' as a CSS framework")

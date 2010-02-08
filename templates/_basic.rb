@@ -1,12 +1,10 @@
-
+### Basic goodies
 # Delete unnecessary files
 run "rm README"
 run "rm public/index.html"
 run "rm public/favicon.ico"
 run "rm public/images/rails.png"
-
 run "rm -rf test"
-
 file "README.md", ""
 
 file "public/robots.txt", <<-EOS.gsub(/^  /, '')
@@ -18,7 +16,7 @@ log "Modifying /config/environment.rb"
 gsub_file('/config/environment.rb', /# Be sure to restart your server when you modify this file/mi) do 
   <<-EOS.gsub(/^  /, '')
   # Be sure to restart your server when you modify this file
-  
+
   APP_NAME         = "#{ENV['_APP']}"
   APP_SUBDOMAIN    = "#{ENV['_APP_SUBDOMAIN']}"
   APP_DOMAIN       = "#{ENV['_APP_DOMAIN']}"
