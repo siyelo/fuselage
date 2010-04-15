@@ -1,0 +1,17 @@
+# Configuration options can be accessed as
+# configatron.site_name
+
+development: &local
+    site_name: Siyelo Fuselage
+    site_description: A flying start to a cool app
+
+    google_analytics_id: UA-12345-67
+
+production:
+  <<: *local
+
+staging:
+  <<: *local
+
+test:
+  <<: *local

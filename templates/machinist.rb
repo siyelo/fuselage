@@ -1,1 +1,0 @@
-gem_with_version 'notahat-machinist', :source => 'http://gemcutter.org', :lib => 'machinist', :env => 'test'

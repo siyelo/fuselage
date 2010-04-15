@@ -1,0 +1,30 @@
+!!! XML
+!!! Strict
+%html
+  %head
+    - title = yield(:title) || configatron.site_description
+    %title= configatron.site_name + " : " + title
+
+    <meta name="google-site-verification" content=" YOUR TAG HERE " />
+    <meta name="description" content=" YOUR META TAGS" />
+
+    = stylesheet_link_tag 'compiled/grid.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'compiled/text.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'compiled/forms.css', :media => 'screen, projection'
+
+    = yield(:head)
+  %body
+    #container
+      = render :partial => 'layouts/header'
+
+      #content
+        %h2 Content
+        = render :partial => 'layouts/flashes'
+        = yield :layout
+
+      = render :partial => 'layouts/sidebar'
+
+      = render :partial => 'layouts/footer'
+
+
+    = javascript_include_tag 'jquery-1.4.2.min', 'application', :cache => true

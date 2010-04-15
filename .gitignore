@@ -1,1 +1,26 @@
 .DS_Store
+log/*.log
+tmp/**/*
+config/database.yml
+config/initializers/site_keys.rb
+db/*.sqlite3
+public/system/*
+db/test.sqlite3-journal
+app/stylesheets/.sass-cache/*
+
+# Cucumber/webrat tmp files
+webrat-*
+
+# The .bundle folder should never be checked into the code repository as it holds machine-local configuration
+.bundle/
+
+
+# IDE files
+.idea
+.loadpath
+.project
+*.tmproj
+
+# Good for avoiding sass merge conflicts
+# but put back for Heroku deploy
+public/stylesheets/compiled/*

@@ -1,0 +1,12 @@
+
+  * Fix Known issues with Compass when next release available
+
+    Note, in v0.8.17, there is currently a bug with this feature… you may get this error:
+
+    TypeError on line ["969"] of /usr/local/lib/ruby/1.9.1/pathname.rb: can't convert Pathname into String
+
+    The bug is fixed in the (pre-release) version 0.10.0.pre4 of compass.
+
+  *  Use Bundler when 0.9 is more stable with Rails 2.3
+  *  OpenID
+  *  Gravatar

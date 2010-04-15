@@ -1,1 +1,0 @@
-gem_with_version 'asset_packager'

@@ -1,0 +1,24 @@
+Formtastic
+  - sassy formtastic css
+
+Devise
+  User model
+  User views generated + formtastic
+Declarative Auth
+
+
+Hoptoad
+
+Action Mailer + Exception Notification
+
+db:seed task
+
+Cool shit
+  StringEx
+    acts_as_url :title
+    Unidecoder AND
+    Handy String extensions
+  Bullet
+  Carmen - country data (drop in replacement for the official Rails country_select)
+  admin_data
+

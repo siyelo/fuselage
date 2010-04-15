@@ -1,1 +1,0 @@
-gem_with_version 'will_paginate', :source => 'http://gemcutter.org'
