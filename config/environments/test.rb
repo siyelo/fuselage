@@ -5,6 +5,10 @@ config.gem "rspec-rails", :version => "1.3.2"
 config.gem "cucumber", :version => "0.6.4"
 config.gem "cucumber-rails", :version => "0.3.0"
 
+# Make Autotest happy
+ENV['AUTOFEATURE'] = configatron.autofeature
+ENV['RSPEC']       = configatron.rspec
+
 # The test environment is used exclusively to run your application's
 # test suite.  You never need to work with it otherwise.  Remember that
 # your test database is "scratch space" for the test suite and is wiped

@@ -15,3 +15,5 @@ staging:
 
 test:
   <<: *local
+  autofeature: true
+  rspec:  true

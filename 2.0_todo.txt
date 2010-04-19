@@ -6,7 +6,6 @@ Devise
   User views generated + formtastic
 Declarative Auth
 
-
 Hoptoad
 
 Action Mailer + Exception Notification
