@@ -12,6 +12,9 @@ Action Mailer + Exception Notification
 
 db:seed task
 
+latest Email-Spec
+
+
 Cool shit
   StringEx
     acts_as_url :title
