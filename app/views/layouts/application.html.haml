@@ -12,5 +12,11 @@
     = stylesheet_link_tag 'compiled/forms.css', :media => 'screen, projection'
     = yield(:head)
   %body
-    = yield() #we're using Pratiks nested layout method here with parent_layout()
+
+    -# using Matt Fields nested layouts method http://rubynerds.blogspot.com/2008/06/nested-layouts-in-rails.html
+    - if has_layout_partial(controller.controller_name)
+      = render :partial => "layouts/#{controller.controller_name}"
+    - else
+      = yield
+
     = javascript_include_tag 'jquery-1.4.2.min', 'application', :cache => true

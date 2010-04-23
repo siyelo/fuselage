@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.root :controller => 'home'
+  map.root :controller => 'home' #a replacement for public/index.html
   # DRY up the static page controller
-  map.home ':page', :controller => 'home', :action => 'show', :page => Regexp.new(HomeController::PAGES.join('|'))
+  map.home ':page', :controller => 'static_page', :action => 'show', :page => Regexp.new(StaticPageController::PAGES.join('|'))
 
   # The priority is based upon order of creation: first created -> highest priority.
 

@@ -10,3 +10,5 @@
   *  Use Bundler when 0.9 is more stable with Rails 2.3
   *  OpenID
   *  Gravatar
+
+  * upgrade/replace has_layout_partial() as its a bottleneck.

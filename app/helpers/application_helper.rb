@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   # Usage: simply invoke title() at the top of each view
   # E.g.
   # - title "Home"
@@ -7,10 +6,9 @@ module ApplicationHelper
     content_for(:title) { page_title }
   end
 
-  #http://m.onkey.org/2009/7/7/nested-layouts
-  def parent_layout(layout)
-    @content_for_layout = self.output_buffer
-    self.output_buffer = render(:file => "layouts/#{layout}")
- end
+  # bit of bottleneck!
+  def has_layout_partial(name)
+    File.exists?( File.join( RAILS_ROOT, 'app', 'views', 'layouts', "_#{name}.html.haml" ) )
+  end
 
 end
