@@ -1,0 +1,13 @@
+- content_tag_for(:tr, resource, :class => cycle(:odd, :even)) do
+  %td.screen_name= h resource.try(:screen_name)
+  %td.bio= h resource.try(:bio)
+  %td.age= h resource.try(:age)
+  %td.website_url= h resource.try(:website_url)
+  %td.interests= h resource.try(:interests)
+  %td.hobbies= h resource.try(:hobbies)
+  %td.actions
+    = link_to 'Show', resource_path(resource)
+    |
+    = link_to 'Edit', edit_resource_path(resource)
+    |
+    = link_to 'Destroy', resource, :confirm => 'Are you sure?', :method => :delete

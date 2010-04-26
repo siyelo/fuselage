@@ -1,0 +1,21 @@
+%h1.heading
+  = "Profiles"
+  
+%p.actions
+  = link_to 'New Profile', new_resource_path
+  
+%table
+  %thead.header
+    %tr
+      %th.screen_name= 'Screen name'
+      %th.bio= 'Bio'
+      %th.age= 'Age'
+      %th.website_url= 'Website url'
+      %th.interests= 'Interests'
+      %th.hobbies= 'Hobbies'
+      %th.actions= 'Actions'
+  %tbody.items.resources
+    - collection.each do |resource|
+      = render 'item', :resource => resource
+      
+= will_paginate(collection)

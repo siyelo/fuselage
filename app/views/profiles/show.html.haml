@@ -1,0 +1,21 @@
+%h1.heading
+  = "Profile %s" % resource.id
+  
+- content_tag_for(:dl, resource) do
+  %dt.label= 'Screen name'
+  %dd.screen_name= h resource.try(:screen_name)
+  %dt.label= 'Bio'
+  %dd.bio= h resource.try(:bio)
+  %dt.label= 'Age'
+  %dd.age= h resource.try(:age)
+  %dt.label= 'Website url'
+  %dd.website_url= h resource.try(:website_url)
+  %dt.label= 'Interests'
+  %dd.interests= h resource.try(:interests)
+  %dt.label= 'Hobbies'
+  %dd.hobbies= h resource.try(:hobbies)
+  
+%p.actions
+  = link_to 'Edit', edit_resource_path(resource)
+  |
+  = link_to 'Index', collection_path

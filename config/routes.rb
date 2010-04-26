@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :profiles
+
 
   map.root :controller => 'home' #a replacement for public/index.html
   # DRY up the static page controller
