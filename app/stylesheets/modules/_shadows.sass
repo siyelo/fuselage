@@ -1,0 +1,9 @@
+!hor_offset ||= 1px
+!vert_offset ||= 1px
+!blur_radius ||= 1px
+!color ||= #000
+
+=box-drop-shadow( !hor_offset, !vert_offset, !blur_radius, !color )
+  box-shadow = !hor_offset !vert_offset !blur_radius !color
+  :-moz-box-shadow = !hor_offset !vert_offset !blur_radius !color
+  :-webkit-box-shadow = !hor_offset !vert_offset !blur_radius !color
