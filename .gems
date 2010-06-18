@@ -1,0 +1,18 @@
+rails --version 2.3.8
+sqlite3-ruby
+haml
+compass
+compass-960-plugin
+will_paginate
+formtastic
+aasm
+paperclip
+heroku_san
+inherited_resources
+responders
+yamler
+configatron
+google_analytics
+dry_scaffold --version "= 0.3.8"
+ruby-debug
+rails-footnotes
