@@ -1,6 +1,6 @@
 ## Welcome to Fuselage
 
-Fuselage is an opinionated base application for Ruby on Rails 2.3.5.
+Fuselage is an opinionated base application for Ruby on Rails 2.3.x.
 
 We chose the gems and configurations that we like (and that the community is using), but you can easily fork our project and customize it to suit your needs.
 
@@ -17,15 +17,15 @@ Get your next Rails project off to a flying start with Fuselage.
 
   * Replace/edit config/database.yml if you want to change it from the default SQLite3 (see the config/ directory for templates).
 
-  * Create your database and setup the prepared defaults.
+  * Install gems, create your database and setup the prepared defaults.
 
-      $ rake db:migrate
+      $ rake setup
 
   * Start your server
 
       $ script/server
 
-  * Login to your app @ http://localhost:3000 with user/password: admin/CHANGEME
+  * Visit your app @ http://localhost:3000
 
 ## More configuration goodies
 
@@ -47,43 +47,6 @@ Get your next Rails project off to a flying start with Fuselage.
 To generate some semantic form markup for your existing models, just run:
 
     ./script/generate form MODEL_NAME
-
-## Full list of what you get
-
-This is what you get out of the box, but its all easily replaced/extended;
-
-    Rails (2.3.5)
-    ORM
-      ActiveRecord``
-    Authentication
-      Devise
-    Controllers
-      make_resourceful
-      will_paginate
-    DB + Models
-      ActiveRecord
-      paperclip
-    Design/Layout
-      jQuery
-      haml
-      sass
-      compass + 960
-      formtastic
-    Development/Metrics
-      rails-footnotes
-      (metric_Fu tbd)
-    Production
-      exception_notification
-      hoptoad
-    Search
-      N/A
-    Security
-      N/A
-    Testing
-      cucumber
-      rspec
-      autotest
-      factory-girl
 
 ## More Info
 
