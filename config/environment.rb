@@ -8,14 +8,15 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.gem "sqlite3-ruby", :lib => "sqlite3"
-  config.gem "haml"
-  config.gem "compass"
-  config.gem 'compass-960-plugin', :lib => 'ninesixty'
+  config.gem "haml", :version => "= 3.0.12"
+  config.gem "compass", :version => "= 0.10.2"
+  config.gem 'compass-960-plugin', :lib => 'ninesixty', :version => "= 0.9.13"
   config.gem "will_paginate"
   config.gem "formtastic"
   config.gem 'aasm'
   config.gem 'paperclip'
-  config.gem 'heroku_san'
+  #config.gem 'heroku_san'
+  #config.gem 'rakeist'
   
   # inherited resources for Rails 2.3
   config.gem 'inherited_resources'
