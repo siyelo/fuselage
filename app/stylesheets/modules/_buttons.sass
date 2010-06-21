@@ -1,0 +1,93 @@
+
+!shadow_diff = #222
+
+=rounded( !pixels = 5px )
+  -webkit-border-radius=  !pixels
+  -moz-border-radius=     !pixels
+
+=rounded-bottom( !pixels = 5px )
+  -moz-border-radius-bottomleft=      !pixels
+  -moz-border-radius-bottomright=     !pixels
+
+=rounded-top( !pixels = 5px )
+  -moz-border-radius-topleft=      !pixels
+  -moz-border-radius-topright=     !pixels
+
+=awesome_color( !bg_color, !color, !border_color = !color )
+  background-color= !bg_color
+  color= !color
+  border= !border_color " 1px solid "
+  
+=awesome_hover_color( !bg_color, !color )
+  background-color= !bg_color - !shadow_diff
+  color= !color
+  text-decoration: none
+    
+=build_awesome_button( !btn_name, !bg_color, !color, !border_color = !color)
+  #{!btn_name}.awesome, #{!btn_name}.awesome:visited
+    +awesome_color( !bg_color, !color, !border_color )
+  #{!btn_name}.awesome:hover, #{!btn_name}.awesome:focus
+    +awesome_hover_color( !bg_color, !color)
+
+=awesome
+  float: left
+  margin-right: 5px
+  background= "#222 " image_url("alert-overlay.png") " repeat-x"
+  display: inline-block
+  padding: 5px 10px 6px
+  color: #fff
+  text-decoration: none
+  font-weight: bold
+  line-height: 1
+  +rounded
+  -moz-box-shadow: 0 1px 3px #999
+  -webkit-box-shadow: 0 1px 3px #999
+  border-bottom: 1px solid #222
+  position: relative
+  cursor: pointer
+
+  &:hover
+    background-color: #111
+    color: #fff
+
+=medium
+  font-size: 13px
+  font-weight: bold
+  line-height: 1
+
+=balaus-buttons(!body_selector = "body")
+  #{!body_selector}
+    
+    // this is just a default input button style - targeted at the signup/pw reset/resend confirmation/subscribe forms etc 
+    // (better than changing the styles several places)
+    input[type=submit]
+      +awesome
+      +medium
+      +awesome_color( !light_grey, !dark_blue )
+      
+      &:hover, &:focus
+        +awesome_hover_color( !light_grey, !dark_blue )
+      
+    // kudos due to Zurb : http://www.zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba
+    .awesome, .awesome:visited
+      +awesome
+    
+    .awesome:active
+      top: 1px
+    
+    .small.awesome, .small.awesome:visited
+      font-size: 11px
+      margin-top: 2px
+    
+    .awesome, .awesome:visited, .medium.awesome, .medium.awesome:visited
+      +medium
+      
+    .large.awesome, .large.awesome:visited
+      font-size: 14px
+      padding: 8px 14px 9px
+    
+    /* Colors ---------- */
+    +build_awesome_button( ".blue", #2daebf, #fff)
+    +build_awesome_button( ".grey", !light_grey , !dark_blue )
+    +build_awesome_button( ".white", #fff , !dark_blue )
+    +build_awesome_button( ".green", !btn_green , #fff, !btn_green_border)

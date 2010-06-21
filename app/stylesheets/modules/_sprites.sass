@@ -1,0 +1,17 @@
+=no-hover-sprite( !width, !x, !y )
+  width= !width
+  background-position= !x !y
+
+// assumes your sprite's hover x-axis is aligned
+=hover-sprite( !width, !x, !y, !hover_y )
+  +no-hover-sprite( !width, !x, !y )
+  &:hover, &:focus
+    background-position= !x !hover_y
+
+// Create your own custom third-state e.g. .active, .disabled
+=hover-sprite-multi( !width, !x, !y, !hover_y, !custom_class, !custom_y )
+  +no-hover-sprite( !width, !x, !y )
+  &:hover, &:focus
+    background-position= !x !hover_y
+  &#{!custom_class}
+    background-position= !x !custom_y

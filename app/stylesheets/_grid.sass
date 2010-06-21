@@ -1,0 +1,42 @@
+/*
+  960 Grid System ~ Core CSS.
+  Learn more ~ http://960.gs/
+
+  Licensed under GPL and MIT. */
+
+@import 960/grid.sass
+
+
+//The following generates the custom grids used by Fuselage
+
+!ninesixty_gutter_width = 10px
+!ninesixty_grid_width = 960px
+!ninesixty_columns = 24
+
+.wrapper
+  +grid-system(24)
+  +clearfix
+  +grid-children
+
+// But most compass users prefer to construct semantic layouts like so (two column layout with header and footer):
+
+.two-column
+  
+  #header
+    #logo
+      +grid(8, 24)
+    #user_nav, #main_nav
+      +grid(16, 24)
+  
+  #featured
+  
+  #content
+    #flashes
+    #main
+      +grid(16, 24)
+    #sidebar
+      +grid(8, 24)
+      
+  #middle
+  
+  #footer

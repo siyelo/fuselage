@@ -24,3 +24,11 @@ Cool shit
   Carmen - country data (drop in replacement for the official Rails country_select)
   admin_data
 
+Migrate to Compass 0.1
+
+FancyButtons
+http://brandonmathis.com/projects/fancy-buttons/
+* first migrate to compass 0.1
+
+Integrate ie css3
+http://www.keithclark.co.uk/labs/ie-css3/
