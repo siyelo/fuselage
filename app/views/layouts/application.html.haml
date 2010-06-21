@@ -15,17 +15,11 @@
     = yield(:head)
     
   %body.two-column.fuselage
-    = render :partial => 'shared/header'
-    = render :partial => 'shared/flashes'
-    = render :partial => 'shared/featured'
-  
+
     -# using Matt Fields nested layouts method http://rubynerds.blogspot.com/2008/06/nested-layouts-in-rails.html
     - if has_layout_partial(controller.controller_name)
       = render :partial => "layouts/#{controller.controller_name}"
     - else
       = yield
       
-    = render :partial => 'shared/social'
-    = render :partial => 'shared/footer'
-
     = javascript_include_tag 'jquery-1.4.2.min', 'application', :cache => true
