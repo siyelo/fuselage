@@ -5,8 +5,8 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
-  :key         => '_CHANGEME_session',
-  :secret      => '946a27689abf0572ef3963327bd4a77daffdf87cd8e9ed9d1bcc735b8aa757d78dc571b3b3393dcdbe7d1c5ae76a4e0bf92b0e5e27b447b9cbb7b81cd538ea7a'
+  :key         => configatron.session_key,
+  :secret      => configatron.session_secret
 }
 
 # Use the database for sessions instead of the cookie-based default,

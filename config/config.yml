@@ -2,9 +2,12 @@
 # configatron.site_name
 
 development: &local
+    #
     site_name: Siyelo Fuselage
     site_description: A flying start to a cool app
-
+    #
+    session_key: _CHANGEME1_session
+    session_secret: 640f71ee8818da4ddca8163dca7fdce94df1c8405ed55618976231847151815b58138fbe5bc76b82edbfa20a8bdd09e72507aa94eaa9c0703343d3f30d3b7f39
     google_analytics_id: UA-12345-67
 
 production:
