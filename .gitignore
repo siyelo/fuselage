@@ -10,10 +10,11 @@ app/stylesheets/.sass-cache/*
 
 # Cucumber/webrat tmp files
 webrat-*
+rerun.txt
+coverage/*
 
 # The .bundle folder should never be checked into the code repository as it holds machine-local configuration
 .bundle/
-
 
 # IDE files
 .idea

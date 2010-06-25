@@ -21,6 +21,7 @@ Rails::Initializer.run do |config|
   config.gem "formtastic"
   config.gem 'aasm'
   config.gem 'paperclip'
+  config.gem "rcov"
   config.gem 'google_analytics', :lib => 'rubaidh/google_analytics'
   #config.gem 'heroku_san'
   #config.gem 'rakeist'

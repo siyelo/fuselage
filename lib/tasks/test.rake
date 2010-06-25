@@ -1,2 +1,2 @@
 desc "Test app with Cuke & RSpec"
-task :test => ["spec", "features"]
+task :test => ["spec", "cucumber"]
