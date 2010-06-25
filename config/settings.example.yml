@@ -1,0 +1,50 @@
+test:
+  :autofeature: true
+  :rspec: true
+
+production:
+  :site_name: Siyelo Fuselage
+  :site_description: A flying start to a cool app
+
+  :action_controller:
+      :session:
+        :key:  _yourapp_key
+        :secret:  hash_for_your_sessions
+  :action_mailer:
+      :delivery_method: :smtp
+      :smtp_settings:
+        :address: smtp.domain.com
+        :port: 25
+        :authentication: plain
+        :user_name: username@domain.com
+        :password: password
+        :domain: domain.com
+        :perform_deliveries: true
+  :default_host: domain.com
+
+  session_key: _CHANGEME1_session
+  session_secret: 640f71ee8818da4ddca8163dca7fdce94df1c8405ed55618976231847151815b58138fbe5bc76b82edbfa20a8bdd09e72507aa94eaa9c0703343d3f30d3b7f39
+  google_analytics_id: UA-12345-67
+
+  :google:
+      :analytics_user_id: google_analytics_code
+      :verification_code: google_webmaster_verification_code
+      :custom_search_key: google_custom_search_code
+  :cron_job_code: secret_key_to_access_the_cronjob
+  :gateway:
+      :login: login_to_payment_gateway
+      :password: password_to_payment_gateway
+  :recaptcha:
+      :public_key: public_key
+      :private_key: private_key
+  :hoptoad:
+      :api_key: some_obscure_key
+  :s3_bucket:
+      :production: name-for-production-storage
+      :staging: name-for-staging-storage
+      :development: name-for-development-storage
+  :site:
+      :info_account_email: email_of_the_info_account_at_the_site
+  :facebook:
+      :consumer_key: api_key
+      :consumer_secret: application_secret

@@ -1,15 +1,29 @@
 // Colors
 
-!black              = #111
+!black              = #444
 !white              = #eee
+!blue               = #37b0e1
+!yellow             = #f68333
 
 
 // Partials
 
-@import partials/header.sass
-@import partials/main.sass
-@import partials/sidebar.sass
-@import partials/middle.sass
-@import partials/footer.sass
-@import partials/flashes.sass
-@import partials/featured.sass
+@import "partials/header"
+@import "partials/main"
+@import "partials/sidebar"
+@import "partials/footer"
+@import "partials/flashes"
+@import "partials/featured"
+
+body
+
+  p
+    color= !black
+
+  h1, h2, h6
+    color= !blue
+  h4
+    color= !yellow
+    text-transform: none
+  h6
+    font-size: 1em

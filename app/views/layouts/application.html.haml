@@ -2,8 +2,8 @@
 !!! Strict
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
-    - title = yield(:title) || configatron.site_description
-    %title= configatron.site_name + " : " + title
+    - title = yield(:title) || APP_CONFIG[:site_description]
+    %title= APP_CONFIG[:site_name] + " : " + title
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
     <meta name="google-site-verification" content=" YOUR TAG HERE " />
     <meta name="description" content=" YOUR META TAGS" />
@@ -13,7 +13,7 @@
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
 
     = yield(:head)
-    
+
   %body.two-column.fuselage
 
     -# using Matt Fields nested layouts method http://rubynerds.blogspot.com/2008/06/nested-layouts-in-rails.html
@@ -21,5 +21,5 @@
       = render :partial => "layouts/#{controller.controller_name}"
     - else
       = yield
-      
+
     = javascript_include_tag 'jquery-1.4.2.min', 'application', :cache => true

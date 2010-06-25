@@ -1,13 +1,13 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
-config.gem "rspec", :version => "1.3.0"
-config.gem "rspec-rails", :version => "1.3.2"
-config.gem "cucumber", :version => "0.6.4"
-config.gem "cucumber-rails", :version => "0.3.0"
+config.gem "rspec", :version => "1.3.0", :lib => false
+config.gem "rspec-rails", :version => "1.3.2", :lib => false
+config.gem "cucumber", :version => "0.6.4", :lib => false
+config.gem "cucumber-rails", :version => "0.3.0", :lib => false
 
 # Make Autotest happy
-ENV['AUTOFEATURE'] = configatron.autofeature
-ENV['RSPEC']       = configatron.rspec
+ENV['AUTOFEATURE'] = APP_CONFIG[:autofeature] || "true"
+ENV['RSPEC']       = APP_CONFIG[:rspec] || "true"
 
 # The test environment is used exclusively to run your application's
 # test suite.  You never need to work with it otherwise.  Remember that

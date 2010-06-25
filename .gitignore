@@ -2,7 +2,7 @@
 log/*.log
 tmp/**/*
 config/database.yml
-config/initializers/site_keys.rb
+config/settings.yml
 db/*.sqlite3
 public/system/*
 db/test.sqlite3-journal
