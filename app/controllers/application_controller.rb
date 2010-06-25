@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  filter_parameter_logging :password, :password_confirmation
+  filter_parameter_logging :password, :password_confirmation, :credit_card_number
 
   before_filter :set_default_html_meta_tags
   after_filter :minify_html
