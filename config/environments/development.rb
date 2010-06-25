@@ -5,7 +5,7 @@ config.gem "rspec-rails", :version => "1.3.2", :lib => false
 config.gem "cucumber", :version => "0.6.4", :lib => false
 config.gem "cucumber-rails", :version => "0.3.0", :lib => false
 
-config.gem 'dry_scaffold', :version => "0.3.8", :lib => false
+config.gem 'dry_scaffold', :version => ">= 0.3.8", :lib => false
 # Handy for debugging E.g. script/server --debugger
 config.gem "ruby-debug"
 config.gem "rails-footnotes"
