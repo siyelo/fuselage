@@ -12,4 +12,5 @@ describe HomeController do
     pending
     lambda { get '/images/favico.ico' }.should_not raise_error ActionController::RoutingError
   end
+  
 end
