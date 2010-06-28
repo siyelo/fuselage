@@ -34,11 +34,4 @@ describe ApplicationController do
     end
   end
   
-  context "google analytics" do
-    it "should insert the GA urchin" do
-      APP_CONFIG[:google][:analytics_user_id] = 'UA-12345'
-      get :new
-      response.body.should =~/UA-12345/
-    end
-  end
 end
