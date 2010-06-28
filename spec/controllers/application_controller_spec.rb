@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe ApplicationController do
   class FooController < ApplicationController
     def index; render :text => "<html>\n\t<body>foos</body>\n</html>"; end
+    def new; end
   end
   controller_name :foo
   
@@ -30,6 +31,14 @@ describe ApplicationController do
       get :index
       assigns[:meta_description].should  == "some description"
       assigns[:meta_keywords].should == "some keywords"
+    end
+  end
+  
+  context "google analytics" do
+    it "should insert the GA urchin" do
+      APP_CONFIG[:google][:analytics_user_id] = 'UA-12345'
+      get :new
+      response.body.should =~/UA-12345/
     end
   end
 end
